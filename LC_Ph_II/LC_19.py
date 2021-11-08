@@ -11,40 +11,39 @@ class Solution(object):
         :rtype: ListNode
         """
 
+        len_ptr = head
+        l = 0
 
 
+        while(len_ptr):
+            len_ptr=len_ptr.next
+            l =l+1
+        iter_till = l-n
 
+        # Remove from begiining
 
+        if iter_till == 0:
+            head= head.next
+            return head
 
-        # Remove from the middle
-        ptr = tmp = head
-        ll = 0
-        while(head):
-            head=head.next
-            ll = ll+1
+        # remove from middle
 
-        iter_till = ll-n
+        tmp = head
+        i =0
+        while(i<iter_till-1):
+            tmp =tmp.next
+            i=i+1
 
-        # remove from beginning
-        if n == 1:
-            if ll == 1:
-                return head
-        # remove from beginning
-        if n==ll:
-            return ptr.next
-
-
-        it = 0
-        while(it < iter_till-1):
-            tmp = tmp.next
-            it = it+1
-
-        node_to_remove = tmp.next
-        if node_to_remove.next:
-            tmp.next = node_to_remove.next
+        if tmp.next and tmp.next.next:
+            tmp.next = tmp.next.next
         else:
             tmp.next = None
-        return ptr
+
+        return head
+
+
+
+
 
 
 
